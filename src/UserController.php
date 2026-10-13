@@ -17,7 +17,19 @@ class UserController
 
     private function processResourceRequest(string $method, ?string $id): void
     {
-        
+        $user = $this->gateway->get($id);
+
+        if (!$user) {
+            http_response_code(404);
+            echo json_encode(["message" => "No user found"]);
+            return;
+        }
+
+        switch ($method) {
+            case "GET":
+                echo json_encode($user);
+                break;
+        }
     }
 
     private function processCollectionRequest(string $method): void
@@ -45,6 +57,10 @@ class UserController
                     "id" => $id
                 ]);
                 break;
+
+            default:
+                http_response_code(405);
+                header("Allow: GET, POST");
         }
     }
 

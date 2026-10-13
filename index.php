@@ -18,7 +18,7 @@ header("Content-type: application/json; charset=UTF-8");
 $parts = explode('/', $_SERVER['REQUEST_URI']);
 
 // Writing this only for users currently, this will change!
-if ($parts[1] != "user") {
+if ($parts[1] != "users") {
     http_response_code(404);
     exit;
 }

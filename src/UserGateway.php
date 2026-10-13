@@ -2,6 +2,18 @@
 
 class UserGateway
 {
+    public function get(string $id): array | false
+    {
+        $query = new UserQuery();
+        $user = $query->findPk($id);
+
+        if (!empty($user)) {
+            return $user->toArray();
+        } else {
+            return false;
+        }
+    }
+
     public function getAll()
     {
         $users = UserQuery::create()->find()->toArray();
