@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+  import {BApp} from 'bootstrap-vue-next'
+</script>
 
 <template>
   <h1>You did it!</h1>
