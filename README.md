@@ -1,38 +1,8 @@
-# .
+# Stardew Tracker API
+The API for my Stardew Valley bundle tracker!
 
-This template should help get you started developing with Vue 3 in Vite.
+This will be a RESTful API created using PHP and Propel ORM. This is entirely new to me, I'm just here to learn :D
 
-## Recommended IDE Setup
-
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+Here's the resources I've used to learn so far:
+- [PropelORM Documentation](https://propelorm.org/documentation)
+- [Create a PHP REST API : Write a RESTful API from Scratch using Plain, Object-Oriented PHP and MySQL](https://youtu.be/X51KOJKrofU?si=A9Ax9uEGQVHNciU6)
