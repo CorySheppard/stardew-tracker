@@ -49,4 +49,10 @@ class UserGateway
 
         return $rows;
     }
+
+    public function delete(string $id)
+    {
+        $user = UserQuery::create()->findPk($id);
+        $user->delete();
+    }
 }

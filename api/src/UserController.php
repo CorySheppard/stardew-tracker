@@ -47,6 +47,19 @@ class UserController
                     "rows" => $rows
                 ]);
                 break;
+
+            case "DELETE":
+                $this->gateway->delete($id);
+
+                echo json_encode([
+                    "message" => "User $id deleted"
+                ]);
+
+                break;
+
+            default:
+                http_response_code(405);
+                header("Allow: GET, PATCH, DELETE");
         }
     }
 
