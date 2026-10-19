@@ -29,6 +29,24 @@ class UserController
             case "GET":
                 echo json_encode($user);
                 break;
+            
+            case "PATCH":
+                $data = (array) json_decode(file_get_contents("php://input"), true);
+
+                $errors = $this->getValidationErrors($data, false);
+
+                if (!empty($errors)) {
+                    http_response_code(422);
+                    echo json_encode(["errors" => $errors]);
+                    break;
+                }
+
+                $rows = $this->gateway->update($user, $data);
+                echo json_encode([
+                    "message" => "User $id updated",
+                    "rows" => $rows
+                ]);
+                break;
         }
     }
 
@@ -64,19 +82,19 @@ class UserController
         }
     }
 
-    private function getValidationErrors(array $data): array
+    private function getValidationErrors(array $data, bool $isNew = true): array
     {
         $errors = [];
 
-        if (empty($data["username"])) {
+        if ($isNew && empty($data["username"])) {
             $errors[] = "A username is required";
         }
 
-        if (empty($data["email"])) {
+        if ($isNew && empty($data["email"])) {
             $errors[] = "An email is required";
         }
 
-        if (empty($data["password"])) {
+        if ($isNew && empty($data["password"])) {
             $errors[] = "A password is required";
         }
 

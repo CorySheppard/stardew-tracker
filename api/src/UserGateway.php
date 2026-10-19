@@ -1,5 +1,7 @@
 <?php
 
+use Map\UserTableMap;
+
 class UserGateway
 {
     public function get(string $id): array | false
@@ -8,7 +10,7 @@ class UserGateway
         $user = $query->findPk($id);
 
         if (!empty($user)) {
-            return $user->toArray();
+            return $user->toArray(UserTableMap::TYPE_FIELDNAME);
         } else {
             return false;
         }
@@ -31,5 +33,20 @@ class UserGateway
         $user->save();
 
         return $user->getId();
+    }
+
+    public function update(array $current, array $new): int
+    {
+        if (! empty($new["password_hash"])) {
+            $passwordHash = password_hash($new["password_hash"], PASSWORD_DEFAULT);
+        }
+
+        $user = UserQuery::create()->findPk($current["id"]);
+        $user->setUsername($new["username"] ?? $current["username"]);
+        $user->setEmail($new["email"] ?? $current["email"]);
+        $user->setPasswordHash($passwordHash ?? $current["password_hash"]);
+        $rows = $user->save();
+
+        return $rows;
     }
 }
